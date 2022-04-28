@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "goserver"
+  namespace: default
+  labels:
+    app: "goserver"
+spec:
+  containers:
+  - name: "goserver"
+    image: "wander4747/hello-k8s:latest"
