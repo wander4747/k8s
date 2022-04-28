@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: goserver
+  labels:
+    app: goserver
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: goserver
+  template:
+    metadata:
+      name: "goserver"
+      namespace: default
+      labels:
+        app: "goserver"
+    spec:
+      containers:
+      - name: "goserver"
+        image: "wander4747/hello-k8s:latest"
