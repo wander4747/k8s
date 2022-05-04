@@ -6,7 +6,7 @@ metadata:
   labels:
     app: goserver
 spec:
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
       app: goserver
@@ -19,4 +19,10 @@ spec:
     spec:
       containers:
       - name: "goserver"
-        image: "wander4747/hello-k8s:latest"
+        image: "wander4747/hello-k8s"
+        env:
+          - name: NAME
+            value: "Wander"
+          - name: AGE
+            value: "30"
+          
