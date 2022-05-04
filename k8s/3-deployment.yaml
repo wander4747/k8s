@@ -20,9 +20,12 @@ spec:
       containers:
       - name: "goserver"
         image: "wander4747/hello-k8s"
-        env:
-          - name: NAME
-            value: "Wander"
-          - name: AGE
-            value: "30"
+        envFrom:
+          - configMapRef:
+              name: goserver-env
+        # env:
+        #   - name: NAME
+        #     value: "Wander"
+        #   - name: AGE
+        #     value: "30"
           
