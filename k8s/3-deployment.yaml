@@ -23,6 +23,8 @@ spec:
         envFrom:
           - configMapRef:
               name: goserver-env
+          - secretRef:
+              name: goserver-secret
 
         volumeMounts:
           - mountPath: "/go/src/myfamily"
