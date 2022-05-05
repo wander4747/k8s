@@ -6,7 +6,7 @@ metadata:
   labels:
     app: goserver
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: goserver
@@ -19,10 +19,22 @@ spec:
     spec:
       containers:
       - name: "goserver"
-        image: "wander4747/hello-k8s"
+        image: "wander4747/hello-k8s:latest"
         envFrom:
           - configMapRef:
               name: goserver-env
+
+        volumeMounts:
+          - mountPath: "/go/src/myfamily"
+            name: config
+
+      volumes:
+        - name: config
+          configMap:
+            name: configmap-volume
+            items:
+              - key: members
+                path: "family.txt"
         # env:
         #   - name: NAME
         #     value: "Wander"
