@@ -20,13 +20,18 @@ spec:
       containers:
       - name: "goserver"
         image: "wander4747/hello-k8s:latest"
+        startupProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            periodSeconds: 3
+            failureThreshold: 30
         readinessProbe:
             httpGet:
               path: /health
               port: 8000
             periodSeconds: 3
             failureThreshold: 1
-            initialDelaySeconds: 10
         livenessProbe:
             httpGet:
               path: /health
@@ -35,7 +40,6 @@ spec:
             failureThreshold: 3
             timeoutSeconds: 1
             successThreshold: 1
-            initialDelaySeconds: 10
 
         envFrom:
           - configMapRef:
